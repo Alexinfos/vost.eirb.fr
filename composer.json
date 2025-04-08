@@ -1,0 +1,10 @@
+{
+    "autoload": {
+	"psr-4": {
+	    "Eirb\\Vost\\Web\\": ["src/app/", "../www/app/"]
+	}
+    },
+    "require": {
+        "nesbot/carbon": "^3.9"
+    }
+}

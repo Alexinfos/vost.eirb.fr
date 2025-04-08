@@ -1,0 +1,14 @@
+---
+services:
+  vost-nginx:
+    image: lscr.io/linuxserver/nginx:latest
+    container_name: vost-nginx
+    environment:
+      - PUID=1000
+      - PGID=1001
+      - TZ=Europe/Paris
+    volumes:
+      - ./config:/config
+    ports:
+      - 8080:80
+    restart: unless-stopped
