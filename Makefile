@@ -4,7 +4,7 @@ all: install
 
 database:
 	mkdir -p config/php/data
-	cp data/vost.sqlite config/php/data/vost.sqlite
+	cp --update=none data/vost.sqlite config/php/data/vost.sqlite
 
 install:
 	composer update
