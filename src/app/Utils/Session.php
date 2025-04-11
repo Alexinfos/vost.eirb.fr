@@ -6,40 +6,34 @@ class Session {
     private ?string $name = null;
     private ?string $school = null;
 
-    public function __construct(array $session) {
-        if (!isset($session['uid'])) {
+    public function __construct(array $session, \PDO $database) {
+        if (!isset($session['cas_data'])) {
             return;
         }
 
-        $this->uid = $session['uid'];
-        $this->school = (int)$session['school'];
+        $this->uid = $session['cas_data']->uid;
+        $this->school = $session['cas_data']->ecole;
 
-        if (!isset($session['id']) && ctype_digit($session['id'])) {
-            return;
+        if (!isset($session['id']) || !ctype_digit($session['id'])) {
+            $req = $database->prepare('SELECT * FROM `users` WHERE `uid` = ? and `isActive` = 1 LIMIT 1;');
+            $req->execute(array($this->uid));
+
+            $result = $req->fetch();
+
+            if ($result === FALSE) {
+                return;
+            }
+
+            $session['id'] = (int)$result['id'];
+            $session['name'] = $result['name'];
         }
 
         $this->id = (int)$session['id'];
         $this->name = $session['name'];
     }
 
-    public function create(\PDO $database, array $session, string $uid, string $school) {
-        $session['uid'] = $uid;
-        $session['school'] = $school;
-
-        $this->uid = $uid;
-        $this->school = $school;
-
-        $req = $database->prepare('SELECT * FROM `users` WHERE `uid` = ? and `isActive` = 1 LIMIT 1;');
-        $req->execute(array($uid));
-
-        $result = $req->fetch();
-
-        if ($result === FALSE) {
-            return;
-        }
-
-        $session['id'] = (int)$result['id'];
-        $session['name'] = $result['name'];
+    public function initVostMember() {
+        
     }
 
     public function isLoggedIn(): bool {

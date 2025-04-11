@@ -12,4 +12,5 @@ install:
 	mkdir -p config/php
 	cp -r src/* config/www
 	cp -r vendor config/php
-	rm config/php/index.html
+	cp auth-config.php config/php/auth-config.php
+	rm -f config/php/index.html

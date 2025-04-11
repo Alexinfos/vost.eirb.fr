@@ -10,3 +10,4 @@ composer.lock
 /src/assets/years/*.webp
 /src/include/config.php
 /data/vost.sqlite
+/auth-config.php

@@ -5,6 +5,7 @@
 	}
     },
     "require": {
-        "nesbot/carbon": "^3.9"
+        "nesbot/carbon": "^3.9",
+        "jumbojett/openid-connect-php": "^1.0"
     }
 }

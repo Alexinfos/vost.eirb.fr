@@ -56,7 +56,7 @@ $video = new Models\Video($v);
                 <h3>Vidéo privée</h3>
                 <p>Connectez-vous pour la regarder</p>
                 <div class="button-bar-outlined">
-                  <a href="/protect/login.php" class="button-outlined">
+                  <a href="/protect/login.php?redirect=<?= urlencode($_SERVER['REQUEST_URI']); ?>" class="button-outlined">
                     <span>Se connecter</span>
                   </a>
                 </div>
