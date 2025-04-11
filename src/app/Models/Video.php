@@ -26,7 +26,7 @@ class Video {
   }
 
   public function getUrl(): string {
-    return urlencode($this->url);
+    return $this->url;
   }
 
   public function getEmbedUrl(): string {
