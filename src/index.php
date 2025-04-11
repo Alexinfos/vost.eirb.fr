@@ -13,15 +13,15 @@ require_once __DIR__ . '/include/config.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO / Embeds -->
-    <meta name="description" content="VOST est le club vidéo de l'ENSEIRB-MATMECA, une école d'ingénieur située de Bordeaux INP.">
+    <meta name="description" content="VOST est le club vidéo de l'ENSEIRB-MATMECA, une école d'ingénieur de Bordeaux INP.">
     <meta name="keywords" content="VOST, club, vidéo, enseirb, matmeca, eirb, Bordeaux, INP">
     <meta property="og:url" content="https://vost.eirb.fr/">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="VOST est le club vidéo de l'ENSEIRB-MATMECA, une école d'ingénieur située de Bordeaux INP.">
+    <meta property="og:description" content="VOST est le club vidéo de l'ENSEIRB-MATMECA, une école d'ingénieur de Bordeaux INP.">
     <meta property="og:image" content="https://vost.eirb.fr/assets/static/logo-colored.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="VOST - Club vidéo de l'Enseirb-Matmeca">
-    <meta name="twitter:description" content="VOST est le club vidéo de l'ENSEIRB-MATMECA, une école d'ingénieur située de Bordeaux INP.">
+    <meta name="twitter:description" content="VOST est le club vidéo de l'ENSEIRB-MATMECA, une école d'ingénieur de Bordeaux INP.">
     <meta name="twitter:image" content="https://vost.eirb.fr/assets/static/logo-colored.png">
     <!-- -->
     <title>VOST - Club vidéo de l'Enseirb-Matmeca</title>
