@@ -4,7 +4,7 @@ DS_Store
 composer.phar
 composer.lock
 /vendor
-/config
+/nginx
 /src/assets/thumbs/*.webp
 /src/assets/users/*.webp
 /src/assets/years/*.webp

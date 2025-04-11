@@ -3,14 +3,14 @@
 all: install
 
 database:
-	mkdir -p config/php/data
-	cp --update=none data/vost.sqlite config/php/data/vost.sqlite
+	mkdir -p nginx/php/data
+	cp --update=none data/vost.sqlite nginx/php/data/vost.sqlite
 
 install:
 	composer update
-	mkdir -p config/www
-	mkdir -p config/php
-	cp -r src/* config/www
-	cp -r vendor config/php
-	cp auth-config.php config/php/auth-config.php
-	rm -f config/php/index.html
+	mkdir -p nginx/www
+	mkdir -p nginx/php
+	cp -r src/* nginx/www
+	cp -r vendor nginx/php
+	cp auth-config.php nginx/php/auth-config.php
+	rm -f nginx/php/index.html

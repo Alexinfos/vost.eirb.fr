@@ -1,0 +1,2 @@
+#!/bin/sh
+sed -i 's/-F/-F -R/' /var/run/service/svc-php-fpm/run

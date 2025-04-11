@@ -8,7 +8,8 @@ services:
       - PGID=1001
       - TZ=Europe/Paris
     volumes:
-      - ./config:/config
+      - ./ngnix:/config
+      - ./mods:/custom-cont-init.d:ro
     ports:
       - 8080:80
     restart: unless-stopped
