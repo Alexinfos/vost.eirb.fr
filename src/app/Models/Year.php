@@ -5,7 +5,6 @@ class Year {
   public string $name;
   public ?string $groupPicture;
 
-  // TODO('constructor from array (db query result)')
   public function __construct(array $dbRow) {
     $this->id = $dbRow['id'];
     $this->name = $dbRow['name'];
