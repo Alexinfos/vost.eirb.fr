@@ -152,6 +152,12 @@ p {
   font-size: 1rem;
 }
 
+.multi-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 ul {
   margin: 0 20px;
 }
@@ -731,7 +737,6 @@ table {
   border-collapse:collapse;
   border-radius:8px;
   overflow: hidden;
-  margin-bottom: 20px;
 }
 
 tr {
@@ -762,6 +767,25 @@ td a {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.page-navigator {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.page-option {
+  background-color: var(--vost-blue-light);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+.selected-page {
+  background-color: var(--vost-blue);
 }
 
 /* End video page */

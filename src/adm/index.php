@@ -12,12 +12,38 @@ if (!$session->isAdmin()) {
     exit();
 }
 
-function getVideos(\PDO $database): array {
+$MAX_ELEMS_PER_PAGE = 15;
+
+// Count amount of pages
+$req = $database->prepare('SELECT COUNT(`videos`.`id`) AS c FROM `videos`;');
+$req->execute();
+$videoCount = (int)$req->fetchColumn();
+$videoMaxPage = floor(($videoCount - 1) / $MAX_ELEMS_PER_PAGE);
+
+$req = $database->prepare('SELECT COUNT(`years`.`id`) AS c FROM `years`;');
+$req->execute();
+$yearCount = (int)$req->fetchColumn();
+$yearMaxPage = floor(($yearCount - 1) / $MAX_ELEMS_PER_PAGE);
+
+
+$videoPage = 0;
+$yearPage = 0;
+if (isset($_GET['vp']) && ctype_digit($_GET['vp'])) {
+  $videoPage = min(max(0, (int)$_GET['vp']), $videoMaxPage);
+}
+
+if (isset($_GET['yp']) && ctype_digit($_GET['yp'])) {
+  $yearPage = min(max(0, (int)$_GET['yp']), $yearMaxPage);
+}
+
+function getVideos(\PDO $database, int $pageNumber): array {
+  global $MAX_ELEMS_PER_PAGE;
   $req = $database->prepare('
     SELECT `videos`.* FROM `videos`
-    ORDER BY `id` DESC;
+    ORDER BY `publishedOn` DESC
+    LIMIT ? OFFSET ?;
   ');
-  $req->execute();
+  $req->execute(array($MAX_ELEMS_PER_PAGE, $pageNumber * $MAX_ELEMS_PER_PAGE));
 
   $videoList = array();
   while ($v = $req->fetch()) {
@@ -28,14 +54,16 @@ function getVideos(\PDO $database): array {
   return $videoList;
 }
 
-function getYears(\PDO $database): array {
+function getYears(\PDO $database, int $pageNumber): array {
+  global $MAX_ELEMS_PER_PAGE;
   $req = $database->prepare('
     SELECT `years`.*, COUNT(`users`.`id`) AS `memberCount` FROM `years`
     LEFT OUTER JOIN `users` ON `years`.`id` = `users`.`year`
     GROUP BY `years`.`id`
-    ORDER BY `name` DESC;
+    ORDER BY `name` DESC
+    LIMIT ? OFFSET ?;
   ');
-  $req->execute();
+  $req->execute(array($MAX_ELEMS_PER_PAGE, $pageNumber * $MAX_ELEMS_PER_PAGE));
 
   $yearsList = array();
   while ($y = $req->fetch()) {
@@ -75,8 +103,8 @@ function getYears(\PDO $database): array {
         </div>
       </div>
       <div class="section">
-        <h2>Vidéos</h2>
-        <div class="section-content">
+        <h2 id="videos">Vidéos</h2>
+        <div class="section-content multi-section">
           <table>
             <tr>
               <th>N°</th>
@@ -85,7 +113,7 @@ function getYears(\PDO $database): array {
               <th>Date de publication</th>
               <th><!-- Modifier --></th>
             </tr>
-            <?php foreach (getVideos($database) as $video) {
+            <?php foreach (getVideos($database, $videoPage) as $video) {
               ?>
               <tr>
                 <td><?= $video->id; ?></td>
@@ -97,6 +125,15 @@ function getYears(\PDO $database): array {
               <?php
             } ?>
           </table>
+          <div class="page-navigator">
+              <?php foreach (range(0, $videoMaxPage) as $p) {
+                ?>
+                <a href="/adm/?vp=<?= $p; ?>&yp=<?= $yearPage; ?>#videos" class="page-option <?= ($p == $videoPage) ? "selected-page" : "" ?>">
+                  <?= $p + 1; ?>
+                </a>
+                <?php
+              } ?>
+          </div>
           <div class="button-bar">
             <a href="actions/new-video.php" target="_blank" class="button">
               <span><i class="fa-solid fa-plus"></i>Nouvelle vidéo</span>
@@ -105,8 +142,8 @@ function getYears(\PDO $database): array {
         </div>
       </div>
       <div class="section">
-        <h2>Mandats</h2>
-        <div class="section-content">
+        <h2 id="mandats">Mandats</h2>
+        <div class="section-content multi-section">
           <table>
             <tr>
               <th>N°</th>
@@ -114,17 +151,26 @@ function getYears(\PDO $database): array {
               <th>Nombre de membres</th>
               <th><!-- Modifier --></th>
             </tr>
-            <?php foreach (getYears($database) as $year) {
+            <?php foreach (getYears($database, $yearPage) as $year) {
               ?>
               <tr>
                 <td><?= $year->id; ?></td>
                 <td><?= $year->getName(); ?></td>
                 <td><?= $year->memberCount; ?></td>
-                <td><a href="video.php?id=<?= $video->id; ?>"><i class="fa-solid fa-pencil"></i></a></td>
+                <td><a href="year.php?id=<?= $year->id; ?>"><i class="fa-solid fa-pencil"></i></a></td>
               </tr>
               <?php
             } ?>
           </table>
+          <div class="page-navigator">
+              <?php foreach (range(0, $yearMaxPage) as $p) {
+                ?>
+                <a href="/adm/?vp=<?= $videoPage; ?>&yp=<?= $p; ?>#mandats" class="page-option <?= ($p == $yearPage) ? "selected-page" : "" ?>">
+                  <?= $p + 1; ?>
+                </a>
+                <?php
+              } ?>
+          </div>
           <div class="button-bar">
             <a href="actions/new-team.php" target="_blank" class="button">
               <span><i class="fa-solid fa-plus"></i>Nouveau mandat</span>
