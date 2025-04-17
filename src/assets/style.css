@@ -3,6 +3,8 @@
   --vost-yellow: hsl(47, 100%, 50%);
   --vost-blue: hsl(231, 25%, 22%);
 
+  --vost-blue-medium: hsl(231, 25%, 33%);
+
   --vost-yellow-light: hsl(47, 100%, 70%);
   --vost-blue-light: hsl(231, 25%, 50%);
 
@@ -721,6 +723,45 @@ input[type="text"], input[type="email"], textarea {
 
 .credits p {
   margin: 0;
+}
+
+/* Adm */
+table {
+  width:100%;
+  border-collapse:collapse;
+  border-radius:8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+tr {
+  width: 100%;
+  background-color: var(--vost-blue-light);
+  color:white;
+}
+
+tr:nth-child(2n+1) {
+  background-color: var(--vost-blue-medium);
+}
+
+td, th {
+  font-size:0.9rem;
+  padding:6px;
+  text-align: center;
+}
+
+th {
+  background-color: var(--vost-blue);
+}
+
+.help {
+  cursor: help;
+}
+
+td a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* End video page */

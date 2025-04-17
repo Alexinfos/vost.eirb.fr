@@ -9,6 +9,11 @@
   </div>
   <div class="header-toolbar">
     <a class="header-toolbar-item toolbar-item-disabled" href="#"><i class="fa-solid fa-user"></i><?= $session->getDisplayName(); ?></a>
+    <?php if ($session->isLoggedIn() && $session->isAdmin()) {
+      ?>
+      <a class="header-toolbar-item" href="/adm/"><i class="fa-solid fa-shield-halved"></i>AdmVOST</a>
+      <?php
+    } ?>
     <?php if ($session->isLoggedIn()) {
       ?>
       <a class="header-toolbar-item" href="/protect/logout.php?redirect=<?= urlencode($_SERVER['REQUEST_URI']); ?>"><i class="fa-solid fa-right-from-bracket"></i>Déconnexion</a>

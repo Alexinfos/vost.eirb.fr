@@ -4,11 +4,13 @@ class Year {
   public int $id;
   public string $name;
   public ?string $groupPicture;
+  public ?int $memberCount;
 
   public function __construct(array $dbRow) {
     $this->id = $dbRow['id'];
     $this->name = $dbRow['name'];
     $this->groupPicture = ($dbRow['groupPicture'] == "") ? null : $dbRow['groupPicture'];
+    $this->memberCount = !isset($dbRow['memberCount']) ? null : $dbRow['memberCount'];
   }
 
   public function getName(): string {
