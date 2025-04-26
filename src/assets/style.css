@@ -769,6 +769,12 @@ td a {
   height: 100%;
 }
 
+.sort-hint {
+  margin-left: 10px;
+  color: var(--vost-blue-light);
+  cursor: help;
+}
+
 .page-navigator {
   display: flex;
   width: 100%;

@@ -110,7 +110,7 @@ function getYears(\PDO $database, int $pageNumber): array {
               <th>N°</th>
               <th><!-- Visibilité --></th>
               <th>Titre</th>
-              <th>Date de publication</th>
+              <th>Date de publication <i class="fa-solid fa-arrow-up-9-1 sort-hint" title="Trié du plus récent au plus ancien"></i></th>
               <th><!-- Modifier --></th>
             </tr>
             <?php foreach (getVideos($database, $videoPage) as $video) {
@@ -147,7 +147,7 @@ function getYears(\PDO $database, int $pageNumber): array {
           <table>
             <tr>
               <th>N°</th>
-              <th>Nom</th>
+              <th>Nom <i class="fa-solid fa-arrow-up-9-1 sort-hint" title="Trié du plus récent au plus ancien"></i></th>
               <th>Nombre de membres</th>
               <th><!-- Modifier --></th>
             </tr>
