@@ -135,7 +135,7 @@ function getYears(\PDO $database, int $pageNumber): array {
               } ?>
           </div>
           <div class="button-bar">
-            <a href="actions/new-video.php" target="_blank" class="button">
+            <a href="actions/new-video.php" class="button">
               <span><i class="fa-solid fa-plus"></i>Nouvelle vidéo</span>
             </a>
           </div>
@@ -172,7 +172,7 @@ function getYears(\PDO $database, int $pageNumber): array {
               } ?>
           </div>
           <div class="button-bar">
-            <a href="actions/new-team.php" target="_blank" class="button">
+            <a href="actions/new-team.php" class="button">
               <span><i class="fa-solid fa-plus"></i>Nouveau mandat</span>
             </a>
           </div>

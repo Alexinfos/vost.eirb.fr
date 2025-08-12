@@ -57,12 +57,28 @@ class Video {
     return $dateObj->translatedFormat('j F Y');
   }
 
+  public function getPublishedOn(): string {
+    return date('Y-m-d', $this->publishedOn / 1000);
+  }
+
   public function formatDuration(): string {
     $seconds = $this->duration % 60;
     $minutes = floor($this->duration / 60) % 60;
     $hours = floor($this->duration / 3600);
 
     return ($hours > 0 ? $hours . ':' : '') . str_pad($minutes, 2, '0', \STR_PAD_LEFT) . ':' . str_pad($seconds, 2, '0', \STR_PAD_LEFT);
+  }
+
+  public function getDurationHours(): int {
+    return floor($this->duration / 3600);
+  }
+
+  public function getDurationMinutes(): int {
+    return floor($this->duration / 60) % 60;
+  }
+
+  public function getDurationSeconds(): int {
+    return $this->duration % 60;
   }
 }
 
