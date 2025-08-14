@@ -605,7 +605,7 @@ select {
   color: var(--vost-blue-light);
 }
 
-.info-card {
+.info-card, .danger-card {
   width: fit-content;
   padding: 8px 14px;
   border-radius: 10px;
@@ -617,16 +617,23 @@ select {
   color: var(--vost-blue-light);
 }
 
-.info-card b {
+:is(.info-card, .danger-card) b {
   font-family: var(--title-font);
   font-size: 1.2em;
-  color: var(--info-color);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.info-card p {
+.info-card b {
+  color: var(--info-color);
+}
+
+.danger-card b {
+  color: var(--danger-color);
+}
+
+:is(.info-card, .danger-card) p {
   margin: 8px 28px;
 }
 
@@ -635,6 +642,16 @@ select {
   max-width: 720px;
   aspect-ratio: 16/9;
   border-radius: 10px;
+  object-fit: cover;
+  box-shadow: var(--base-shadow);
+}
+
+.user-picture-preview {
+  width: 50%;
+  max-width: 256px;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  object-fit: cover;
   box-shadow: var(--base-shadow);
 }
 

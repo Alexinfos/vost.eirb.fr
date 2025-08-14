@@ -172,8 +172,13 @@ function getYears(\PDO $database, int $pageNumber): array {
               } ?>
           </div>
           <div class="button-bar">
-            <a href="actions/new-team.php" class="button">
-              <span><i class="fa-solid fa-plus"></i>Nouveau mandat</span>
+            <a href="actions/new-year.php" class="button">
+              <?php
+                // New year
+                $previousYear = getYears($database, 0)[0];
+                $newYearName = $previousYear->getSecondYear() . "-" . ((int)$previousYear->getSecondYear() + 1);
+              ?>
+              <span><i class="fa-solid fa-plus"></i>Créer le mandat <?= $newYearName; ?></span>
             </a>
           </div>
         </div>

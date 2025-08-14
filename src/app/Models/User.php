@@ -7,6 +7,7 @@ class User {
   public ?int $year;
   public ?string $role;
   public ?string $profilePicture;
+  public bool $isActive;
 
   public function __construct(array $dbRow) {
     $this->id = $dbRow['id'];
@@ -15,6 +16,7 @@ class User {
     $this->year = $dbRow['year'];
     $this->role = ($dbRow['role'] == "") ? null : $dbRow['role'];
     $this->profilePicture = ($dbRow['profilePicture'] == "") ? null : $dbRow['profilePicture'];
+    $this->isActive = ($dbRow['isActive'] == 1);
   }
 
   public function getName(): string {
