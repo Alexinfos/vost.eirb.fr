@@ -99,9 +99,9 @@ function getYears(\PDO $database): array {
             <div class="multi-input">
               <input type="number" name="duration-hours" value="<?= $video->getDurationHours(); ?>" min=0 hint="hh" class="text-align-right">
               <p>h</p>
-              <input type="number" name="duration-minutes" value="<?= $video->getDurationMinutes(); ?>" min=0 max=59 hint="mm" class="text-align-right">
+              <input type="number" name="duration-minutes" value="<?= $video->getDurationMinutes(); ?>" min=0 hint="mm" class="text-align-right">
               <p>min</p>
-              <input type="number" name="duration-seconds" value="<?= $video->getDurationSeconds(); ?>" min=0 max=59 hint="ss" class="text-align-right">
+              <input type="number" name="duration-seconds" value="<?= $video->getDurationSeconds(); ?>" min=0 hint="ss" class="text-align-right">
               <p>s</p>
             </div>
           </div>
