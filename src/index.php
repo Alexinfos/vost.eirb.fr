@@ -30,8 +30,7 @@ require_once __DIR__ . '/include/config.php';
     <?php include __DIR__ . "/include/header.php"; ?>
     <div id="hero-section">
       <video autoplay muted loop poster="/assets/static/hero.webp">
-        <?php /* Video hero hosted somewhere else to avoid overloading Eirbware's server */ ?>
-        <source src="https://vost.alexisbn.fr/hero.mp4" type="video/mp4">
+        <source src="/assets/static/hero.mp4" type="video/mp4">
       </video>
       <div id="hero-content">
         <img src="/assets/static/logo-colored.svg">
