@@ -46,7 +46,7 @@ class Year {
   }
 
   public function getVideos(\PDO $database): array {
-    $req = $database->prepare('SELECT * FROM `videos` WHERE `year` = ? ORDER BY `publishedOn` ASC;');
+    $req = $database->prepare('SELECT * FROM `videos` WHERE `year` = ? AND `visible` = 1 ORDER BY `publishedOn` ASC;');
     $req->execute(array($this->id));
 
     $videoList = array();

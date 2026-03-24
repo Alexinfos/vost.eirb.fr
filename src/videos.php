@@ -4,7 +4,7 @@ use Eirb\Vost\Web\Components;
 use Eirb\Vost\Web\Models;
 
 function getSpotlightVideos(\PDO $database): array {
-  $req = $database->prepare('SELECT * FROM `videos` ORDER BY `publishedOn` DESC LIMIT 3;');
+  $req = $database->prepare('SELECT * FROM `videos` WHERE `visible` = 1 ORDER BY `publishedOn` DESC LIMIT 3;');
   $req->execute();
 
   $videoList = array();
@@ -19,9 +19,9 @@ function getSpotlightVideos(\PDO $database): array {
 function getYears(\PDO $database): array {
   $req = $database->prepare('
     SELECT `years`.* FROM `years`
-    LEFT OUTER JOIN `videos` ON `years`.`id` = `videos`.`year`
+    INNER JOIN `videos` ON `years`.`id` = `videos`.`year`
+    WHERE `videos`.`visible` = 1
     GROUP BY `years`.`id`
-    HAVING COUNT(`videos`.`id`) > 0
     ORDER BY `name` DESC;
   '); // Select only years with at least one video
   $req->execute();

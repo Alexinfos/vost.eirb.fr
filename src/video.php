@@ -10,7 +10,7 @@ if (isset($_GET['id']) && ctype_digit($_GET['id'])) {
   exit(0);
 }
 
-$req = $database->prepare('SELECT * FROM `videos` WHERE `id` = ? LIMIT 1;');
+$req = $database->prepare('SELECT * FROM `videos` WHERE `id` = ? AND `visible` = 1 LIMIT 1;');
 $req->execute(array($videoId));
 
 $v = $req->fetch();
