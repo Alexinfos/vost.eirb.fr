@@ -146,6 +146,14 @@ h2 {
   margin: 0;
 }
 
+h3 {
+  font-family: var(--title-font);
+  font-weight: bold;
+  color: var(--vost-blue);
+  font-size: 1.5rem;
+  margin: 0;
+}
+
 p {
   margin: 0;
 }

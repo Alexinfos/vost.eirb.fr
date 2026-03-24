@@ -1,5 +1,19 @@
 <?php
 require_once __DIR__ . '/include/config.php';
+use Eirb\Vost\Web\Models;
+
+function getHomeSections(\PDO $database): array {
+  $req = $database->prepare('SELECT * FROM `home_sections`;');
+  $req->execute();
+
+  $sectionList = array();
+  while ($s = $req->fetch()) {
+    $section = new Models\HomeSection($s);
+    array_push($sectionList, $section);
+  }
+
+  return $sectionList;
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -42,29 +56,17 @@ require_once __DIR__ . '/include/config.php';
       </div>
     </div>
     <main id="presentation">
-      <div class="section">
-        <h2>Qui sommes-nous ?</h2>
-        <p>
-          VOST, pour <i>Vidéos Originales, Séries TV</i>, est un club regroupant depuis 2011 des étudiants de l'Enseirb-Matmeca passionnés par l'audiovisuel. Il a pour objectif de&nbsp;:
-        </p>
-        <ul>
-          <li>Couvrir la plupart des évènements de la vie de l'école</li>
-          <li>Tourner et monter de nombreuses vidéos</li>
-          <li>Réaliser des vidéos pour des prestataires extérieurs</li>
-        </ul>
-      </div>
-      <div class="section">
-        <h2>Historique</h2>
-        <p>
-          Le club a été fondé en mars 2011 par Jean-Baptiste Bernard avec l’objectif original de promouvoir les séries. La promotion des animes est arrivée très rapidement après. Les séances de diffusion n’ont pas connu une très forte participation, mais étaient suivies par des élèves toujours satisfaits d’être venus.
-          <br><br>
-          En mai 2011 s’est faite l’acquisition d’un camescope, et les vidéos ont été lancées dès la rentrée. Cette fois-ci, l’attention a été beaucoup plus importante, tout d’abord en couvrant des événements de cette période, comme le concert de l’Enseirb et la pièce du club théâtre. Ensuite, de nouvelles réalisations sont apparues, incluant des vidéos originales, c’est à dire des fausses bandes-annonces, fausses pubs et parodies.
-          <br><br>
-          Pendant la saison 2016/2017, le club investit dans du nouveau matériel&nbsp;: une nouvelle caméra (Sony 16300) et un stabilisateur (DJI Ronin M).
-          <br><br>
-          Depuis 2023, VOST dispose d'un nouveau logo.
-        </p>
-      </div>
+      <?php foreach (getHomeSections($database) as $section) {
+        ?>
+        <div class="section">
+          <h2><?= $section->getTitle(); ?></h2>
+          <div class="section-content">
+            <?= $section->getContent(); ?>
+          </div>
+        </div>
+        <?php
+      }
+      ?>
       <div class="section">
         <h2>Nous contacter</h2>
         <div class="button-bar section-content">

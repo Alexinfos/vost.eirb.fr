@@ -94,6 +94,9 @@ function getYears(\PDO $database, int $pageNumber): array {
       <div class="section">
         <h2>AdmVOST</h2>
         <div class="button-bar section-content">
+          <a href="home.php" class="button">
+            <span><i class="fa-solid fa-pen"></i>Modifier l'accueil</span>
+          </a>
           <a href="#" target="_blank" class="button">
             <span><i class="fa-solid fa-book"></i>Manuel d'utilisation</span>
           </a>
