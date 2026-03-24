@@ -44,7 +44,7 @@ $video = new Models\Video($v);
 				<div class="video">
           <?php if ($session->isLoggedIn()) {
             ?>
-            <iframe id="player" type="text/html" src="<?= $video->getEmbedUrl(); ?>" frameborder="0" allow="autoplay"></iframe>
+            <iframe id="player" type="text/html" src="<?= $video->getEmbedUrl(); ?>" frameborder="0" allow="autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe>
             <?php
           } else {
             ?>
